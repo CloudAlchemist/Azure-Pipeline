@@ -14,10 +14,12 @@ steps:
 
 - task: NodeTool@0
   inputs:
-    versionSpec: '16.x'  # Update Node.js version to 16.x or 18.x
+    versionSpec: '16.x'  # Specify the Node.js version you want to use
 
 - script: |
     cd simple-nodejs-project  # Change to the directory containing your package.json
+    echo "Deleting package-lock.json if it exists..."
+    rm -f package-lock.json   # Remove the package-lock.json file
     pwd                        # Print the working directory
     ls -ltr                    # List the files in the directory
     npm install                # Install dependencies
