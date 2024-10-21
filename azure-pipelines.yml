@@ -7,21 +7,21 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
+steps:  # Added 'steps:' to define the steps in the pipeline
 - task: NodeTool@0
   inputs:
-    versionSource: 'spec'
-    versionSpec: '6.x'
+    versionSpec: '14.x'  # Consider using a more recent version of Node.js
 
-- task: CmdLine@2
-  inputs:
-    script: |
-      npm install
-      npm run build
+- script: |
+    npm install
+    npm run build
+    npm test  # Add this line if you want to run tests as well
+  displayName: 'Install dependencies, build, and run tests'  # Add a display name for clarity
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Make sure to set the artifact path correctly
     ArtifactName: 'drop'
     publishLocation: 'Container'
