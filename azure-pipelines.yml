@@ -17,15 +17,15 @@ steps:
     versionSpec: '16.x'  # Update Node.js version to 16.x or 18.x
 
 - script: |
-    cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory containing your package.json
-    pwd                            # Print the working directory
-    ls -ltr                        # List the files in the directory
-    npm install                    # Install dependencies
-    npm run build                  # Build the application (ensure a build script is defined in package.json)
+    cd simple-nodejs-project  # Change to the directory containing your package.json
+    pwd                        # Print the working directory
+    ls -ltr                    # List the files in the directory
+    npm install                # Install dependencies
+    npm run build              # Build the application (ensure a build script is defined in package.json)
   displayName: 'Install dependencies and build the application'
 
 - script: |
-    cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory where your artifacts should be
+    cd simple-nodejs-project  # Change to the directory where your artifacts should be
     echo "Checking for artifacts:"
-    ls -al                           # List all files to see if build artifacts are present
+    ls -al                    # List all files to see if build artifacts are present
   displayName: 'Check for Artifacts After Build'
