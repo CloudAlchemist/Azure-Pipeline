@@ -1,0 +1,31 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self  # Ensure the code is checked out
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'  # Update Node.js version to 16.x or 18.x
+
+- script: |
+    cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory containing your package.json
+    pwd                            # Print the working directory
+    ls -ltr                        # List the files in the directory
+    npm install                    # Install dependencies
+    npm run build                  # Build the application (ensure a build script is defined in package.json)
+  displayName: 'Install dependencies and build the application'
+
+- script: |
+    cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory where your artifacts should be
+    echo "Checking for artifacts:"
+    ls -al                           # List all files to see if build artifacts are present
+  displayName: 'Check for Artifacts After Build'
