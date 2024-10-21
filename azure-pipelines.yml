@@ -9,19 +9,22 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:  # Added 'steps:' to define the steps in the pipeline
+steps:
+- checkout: self  # Ensure the code is checked out
+
 - task: NodeTool@0
   inputs:
-    versionSpec: '14.x'  # Consider using a more recent version of Node.js
+    versionSpec: '14.x'  # Specify the Node.js version you want to use
 
 - script: |
-    npm install
-    npm run build
-    npm test  # Add this line if you want to run tests as well
-  displayName: 'Install dependencies, build, and run tests'  # Add a display name for clarity
+    cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory containing your package.json
+    npm install                     # Install dependencies
+    npm run build                   # Build the application (if applicable)
+    npm test                        # Run tests
+  displayName: 'Install dependencies, build, and run tests'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Make sure to set the artifact path correctly
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Specify the path to publish artifacts
+    ArtifactName: 'drop'  # Name of the artifact
+    publishLocation: 'Container'  # Publish location
