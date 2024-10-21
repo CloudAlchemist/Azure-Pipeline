@@ -14,14 +14,14 @@ steps:
 
 - task: NodeTool@0
   inputs:
-    versionSpec: '14.x'  # Specify the Node.js version you want to use
+    versionSpec: '16.x'  # Update Node.js version to 16.x or 18.x
 
 - script: |
     cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory containing your package.json
-    pwd
-    ls -ltr
-    npm install                     # Install dependencies
-    npm run build                   # Build the application
+    pwd                            # Print the working directory
+    ls -ltr                        # List the files in the directory
+    npm install                    # Install dependencies
+    npm run build                  # Build the application (ensure a build script is defined in package.json)
   displayName: 'Install dependencies and build the application'
 
 - script: |
