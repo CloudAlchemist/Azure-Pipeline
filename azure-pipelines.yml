@@ -18,6 +18,8 @@ steps:
 
 - script: |
     cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory containing your package.json
+    pwd
+    ls -ltr
     npm install                     # Install dependencies
     npm run build                   # Build the application
   displayName: 'Install dependencies and build the application'
