@@ -17,7 +17,7 @@ steps:
     versionSpec: '16.x'  # Specify the Node.js version you want to use
 
 - script: |
-    cd simple-nodejs-project  # Change to the directory containing your package.json
+    cd NODEJS_PROJECTS/01_SimpleServer  # Change to the directory containing your package.json
     echo "Deleting package-lock.json if it exists..."
     rm -f package-lock.json   # Remove the package-lock.json file
     pwd                        # Print the working directory
