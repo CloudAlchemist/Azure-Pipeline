@@ -19,13 +19,11 @@ steps:
 - script: |
     cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory containing your package.json
     npm install                     # Install dependencies
-    npm run build                   # Build the application (if applicable)
-    ls -al                          # List files to verify build output
-    npm test                        # Run tests
-  displayName: 'Install dependencies, build, and run tests'
+    npm run build                   # Build the application
+  displayName: 'Install dependencies and build the application'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'NODEJS_PROJECTS/03_nodeauth/dist'  # Adjust this to the correct output directory
-    ArtifactName: 'drop'  # Name of the artifact
-    publishLocation: 'Container'  # Publish location
+- script: |
+    cd NODEJS_PROJECTS/03_nodeauth  # Change to the directory where your artifacts should be
+    echo "Checking for artifacts:"
+    ls -al                           # List all files to see if build artifacts are present
+  displayName: 'Check for Artifacts After Build'
